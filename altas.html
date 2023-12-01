@@ -1,0 +1,44 @@
+<!--Código de altas.html-->
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initialscale=1.0">
+    <title>Agregar producto</title>
+    <link rel="stylesheet" href="static/css/estilos.css">
+</head>
+
+<body>
+    <h1>Agregar Productos al Inventario</h1> <!--indican el proposito de la pag-->
+    <h3>Catálogo</h3>
+    
+    <form id="formulario" enctype="multipart/form-data"> <!--enctype="multipart/form-data" es necesario para enviar archivos
+        al back.-->
+        <label for="codigo">Código:</label> <!--orienta al usuario de lo que tiene que ingresar-->
+        <input type="text" id="codigo" name="codigo" required><br> <!--etiqueta input de entrada y br q separa los campos-->
+        
+        <label for="descripcion">Descripción:</label>
+        <input type="text" id="descripcion" name="descripcion" required><br>
+        
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" name="cantidad" required><br>
+        
+        <label for="precio">Precio:</label>
+        <input type="number" step="0.01" id="precio" name="precio" required><br>
+        
+        <label for="imagenProducto">Imagen del producto:</label>
+        <input type="file" id="imagenProducto" name="imagen">
+        
+        <label for="proveedorProducto">Proveedor:</label>
+        <input type="text" id="proveedorProducto" name="proveedor">
+        
+        <button type="submit">Agregar Producto</button> <!--boton enviar form-->
+        <a href="index.html">Menu principal</a> <!--enlace al menu principal-->
+    </form>
+    <script src="altas.js"></script> <!--vincula el arch html con otro de javascript, que cntrola el comportamiento del form-->
+</body>
+
+</html>
