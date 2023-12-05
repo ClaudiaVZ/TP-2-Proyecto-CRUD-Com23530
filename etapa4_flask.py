@@ -57,11 +57,12 @@ class Catalogo:
 #CUERPO PRINCIPAL DEL PROGRAMA (crear l catalogo)
 
 #instancia de la clase catalogo (4 Argumentos)
-Catalogo = Catalogo(host='localhost', user='root', password='',
-database='miapp')
+#Catalogo = Catalogo(host='localhost', user='root', password='', database='miapp')
+Catalogo = Catalogo(host= 'ClaudiaVZ.mysql.pythonanywhere-services.com', user= 'ClaudiaVZ', password= 'proyectocrud23', database= 'ClaudiaVZ$miapp')
 
 #carpeta donde se guardan las imagenes 
-ruta_destino = './static/imagenes_productos/'
+#ruta_destino = './static/imagenes_productos/'
+ruta_destino = '/home/ClaudiaVZ/mysite/static/imagenes_productos/' #cambio la ruta de las imagenes por la q me dá anywhere en files con slash al principio y fin sino, no carga las imagenes(aparecen rotas)
 
 #METODOS Y RUTAS
 
