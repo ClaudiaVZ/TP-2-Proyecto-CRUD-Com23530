@@ -78,8 +78,7 @@ def agregar_producto(self, codigo, descripcion, cantidad, precio, imagen, provee
         return False   # si el producto ya existe, no se vuelve a agregar
     
     #si no existe, entonces lo agrega a la tabla con los valores proporcionados
-    sql = f"INSERT INTO productos (
-        codigo, descripcion, cantidad, precio, imagen_url, proveedor) VALUES (%s, %s, %s, %s, %s, %s)"
+    sql = "INSERT INTO productos (codigo, descripcion, cantidad, precio, imagen_url, proveedor) VALUES (%s, %s, %s, %s, %s, %s)"
     valores = (codigo, descripcion, cantidad, precio, imagen, proveedor)
         
     self.cursor.execute(sql, valores)  #guarda el producto nuevo
@@ -135,6 +134,7 @@ def mostrar_producto(self, codigo):
 #Ruta mostrar producto
 @app.route("/productos/<int:codigo>", methods = ["GET"]) #representa el num de codigo del prooducto
 def mostrar_producto(codigo): #solicitud para dif codigos
+    Catalogo.mostrar_producto(codigo)
     producto = Catalogo.consultar_producto(codigo) #llama al metodo, y busca en la BDD
     if producto:
         return jsonify(producto) #si encuentra el producto, muestra los detalles
@@ -146,7 +146,7 @@ def mostrar_producto(codigo): #solicitud para dif codigos
 
 def modificar_producto(self, codigo, descripcion_nueva, cantidad_nueva, precio_nuevo, imagen_nueva, proveedor_nuevo):
     #consulta para evitar inyecciones (vulneravilidad de seg)
-    sql = f"UPDATE productos SET descripcion = %s, cantidad = %s, precio = %s, imagen_url = %s, proveedor = %s WHERE codigo = %s"
+    sql = "UPDATE productos SET descripcion = %s, cantidad = %s, precio = %s, imagen_url = %s, proveedor = %s WHERE codigo = %s"
     valores = (descripcion_nueva, cantidad_nueva, precio_nuevo, imagen_nueva, proveedor_nuevo, codigo)
     
     self.cursor.execute(sql, valores) #busca el producto, aplica las modif 
@@ -169,7 +169,7 @@ def modificar_producto(codigo): #llama a la funcion cuando se realiza una consul
     imagen.save(os.path.join(ruta_destino, nombre_imagen))
 
     #actualizar datos del producto de manera segura y controlada
-    if Catalogo.modificar_producto(codigo, descripcion_nueva, cantidad_nueva, precio_nuevo, proveedor_nuevo, nombre_imagen):
+    if Catalogo.modificar_producto( codigo descripcion_nueva, cantidad_nueva, precio_nuevo, proveedor_nuevo, nombre_imagen):
         return jsonify({"mensaje": "Producto Modificado!"}), 200
     else:
         return jsonify({"mensaje": "Producto NO encontrado"}), 404
