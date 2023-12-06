@@ -1,6 +1,7 @@
-//CODIGO DE ALTAS
+//CODIGO AGREGAR PRODUCTOS
 
-const URL = "http://127.0.0.1:5000/" //url del servidor (desarrollo local)
+//const URL = "http://127.0.0.1:5000/" //url del servidor (desarrollo local)
+const URL = "https://claudiavz.pythonanywhere.com/" //url del servidor (desarrollo local)
 
 // reacciona el evento de envío del formulario (lo envia)
 document.getElementById('formulario').addEventListener('submit', function

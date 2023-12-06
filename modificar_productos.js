@@ -1,4 +1,5 @@
-const URL = "http://127.0.0.1:5000/" //serv local
+
+const URL = "https://claudiavz.pythonanywhere.com/" //serv local
 
 const app = Vue.createApp({ //define un objeto crea una Vue dentro de otra
     data() { //variables reactivas para cambiar valores

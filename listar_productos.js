@@ -1,4 +1,5 @@
-const URL = "http://127.0.0.1:5000/" //servidor donde se recuperan los datos de los prod
+
+const URL = "https://claudiavz.pythonanywhere.com/" //servidor donde se recuperan los datos de los prod
 
 // Realizamos la solicitud GET al servidor para obtener todos los productos
 fetch(URL + 'productos') //realiza una solicitud GET al servidor
@@ -20,7 +21,7 @@ fetch(URL + 'productos') //realiza una solicitud GET al servidor
                 '<td align="right">' + producto.cantidad + '</td>' +
                 '<td align="right">' + producto.precio + '</td>' +
                 // Mostrar miniatura de la imagen
-                '<td><img src=static/imagenes_productos/' + producto.imagen_url + 'alt = "Imagen del producto" style = "width: 100px;" ></td > ' + 
+                '<td><img src=https://www.pythonanywhere.com/user/ClaudiaVZ/files/home/ClaudiaVZ/mysite/static/imagenes_productos' + producto.imagen_url + 'alt = "Imagen del producto" style = "width: 100px;" ></td > ' + 
                 '<td align="right">' + producto.proveedor + '</td>';
 
             tablaProductos.appendChild(fila);
