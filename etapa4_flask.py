@@ -109,9 +109,9 @@ class Catalogo:
 
      #Metodo modificar producto por su Cod (actualizar los datos)
     def modificar_producto(self, codigo, descripcion_nueva, cantidad_nueva, precio_nuevo, imagen_nueva, proveedor_nuevo):
-    #consulta para evitar inyecciones (vulneravilidad de seg)
+     #consulta para evitar inyecciones (vulneravilidad de seg)
         sql = "UPDATE productos SET descripcion = %s, cantidad = %s, precio = %s, imagen_url = %s, proveedor = %s WHERE codigo = %s"
-        valores = (descripcion_nueva, cantidad_nueva, precio_nuevo, imagen_nueva, proveedor_nuevo, codigo)
+        valores = (codigo, descripcion_nueva, cantidad_nueva, precio_nuevo, imagen_nueva, proveedor_nuevo)
     
         self.cursor.execute(sql, valores) #busca el producto, aplica las modif 
         self.conn.commit()              #confirma los cambios
@@ -208,7 +208,7 @@ def modificar_producto(codigo): #llama a la funcion cuando se realiza una consul
     imagen.save(os.path.join(ruta_destino, nombre_imagen))
 
     #actualizar datos del producto de manera segura y controlada
-    if Catalogo.modificar_producto( codigo descripcion_nueva, cantidad_nueva, precio_nuevo, proveedor_nuevo, nombre_imagen):
+    if Catalogo.modificar_producto(codigo, descripcion_nueva, cantidad_nueva, precio_nuevo, proveedor_nuevo, nombre_imagen):
         return jsonify({"mensaje": "Producto Modificado!"}), 200
     else:
         return jsonify({"mensaje": "Producto NO encontrado"}), 404
