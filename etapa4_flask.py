@@ -44,7 +44,7 @@ class Catalogo:
             descripcion VARCHAR(255) NOT NULL,
             cantidad INT NOT NULL,
             precio DECIMAL(10, 2) NOT NULL,
-            imagen_url VARCHAR(255)            
+            imagen_url VARCHAR(255),            
             proveedor INT)''') 
         self.conn.commit() #confirma la creacion de la tabla
 
