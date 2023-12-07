@@ -1,50 +1,87 @@
 /* Estilos del Proyecto */
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color: #f9f9f9;
+    color: #333;
+    background-image: url('clienta-eligiendo-productos-medicos-farmacia_651396-1233.avif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0; /* Eliminado el margen por defecto del body */
 }
 
 .contenedor-centrado {
     display: flex;
-    width: 100%;
     justify-content: center;
+    align-items: center; /* Añadido para centrar verticalmente los elementos */
+    height: 10vh; /* Añadido para ocupar toda la altura de la pantalla */
 }
 
+/* Ajustes para los botones */
+.button {
+    display: block;
+    width: 200px; /* Ajustado el ancho del botón */
+    margin: 10px auto; /* Ajustado el espacio entre botones */
+    text-align: center;
+    padding: 15px;
+    border: 2px solid #007bff; /* Añadido el borde al botón */
+    border-radius: 25px; /* Redondeado el borde del botón */
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none; /* Eliminada la subrayado del enlace */
+    font-size: 24px; /* Tamaño de la letra */
+    font-weight: bold; /* Negrita */
+}
+
+.button:hover {
+    background-color: #0056b3;
+    border: 2px solid #0056b3; /* Cambiado el color del borde en estado hover */
+}
+
+/* Ajustes para el botón de menú principal */
+#boton-menu-principal {
+    width: 100%; /* Cambiado a 100% para que ocupe todo el ancho disponible */
+}
+
+/* Ajustes para el botón de agregar producto */
+#boton-agregar-producto {
+    width: 100%; /* Ajustado para que tenga el mismo ancho que el botón de menú principal */
+}
+
+/* Ajustes para los encabezados */
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+/* Ajustes para párrafos */
 p {
     font-family: 'Times New Roman', Times, serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
     background-color: #f9f9f9;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
+    border-radius: 10px; /* Redondeado el borde del párrafo */
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    text-align: center;
-    color: #007bff;
-}
-
-form {
-    max-width: 400px;
+/* Ajustes para formularios y tablas */
+form, table {
+    max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background-color: white;
-    border: 1px solid lightslategray;
-    border-radius: 5px;
-}
-
-table {
-    max-width: 90%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: white;
-    border: 1px solid lightslategray;
-    border-radius: 5px;
+    background-color: #ccebff;
+    border: 1px solid #ddd;
+    border-radius: 10px; /* Redondeado el borde del formulario y la tabla */
 }
 
 label {
@@ -55,53 +92,10 @@ label {
 input[type="text"],
 input[type="number"],
 textarea {
-    width: 90%;
+    width: calc(100% - 20px); /* Ajustado para tener en cuenta el relleno */
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #cccccc;
+    border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box; /* Añadido para incluir el relleno en el ancho total */
 }
-
-input[type="submit"] {
-    padding: 10px;
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-input[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
-button {
-    padding: 8px;
-    margin: 4px;
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-a {
-    padding: 8px;
-    margin: 4px;
-    background-color: #fdab13;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 85%;
-}
-
-a :hover {
-    background-color: #cd7b00;
-}
-
