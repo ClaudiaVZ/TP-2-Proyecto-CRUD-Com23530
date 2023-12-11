@@ -102,7 +102,10 @@ class Catalogo:
 
      #Metodo eliminar producto (elimina un producto mediante su Cod)
     def eliminar_producto(self, codigo):
-        self.cursor.execute(f"DELETE FROM productos WHERE codigo = {codigo}")
+        #self.cursor.execute(f"DELETE FROM productos WHERE codigo = {codigo}")
+        sql = "DELETE FROM productos WHERE codigo = %s"
+        valores = (codigo,) #evita ataques de vulneravilidad
+        self.cursor.execute(sql, valores)
         self.conn.commit() #confirmar los cambios
         return self.cursor.rowcount > 0 #evalua si la eliminacion fue exitosa (>0 indica q se ha eliminado un producto; <0 indica q el producto no fue encontrado)
 
@@ -110,8 +113,8 @@ class Catalogo:
      #Metodo modificar producto por su Cod (actualizar los datos)
     def modificar_producto(self, codigo, descripcion_nueva, cantidad_nueva, precio_nuevo, imagen_nueva, proveedor_nuevo):
      #consulta para evitar inyecciones (vulneravilidad de seg)
-        sql = "UPDATE productos SET descripcion = %s, cantidad = %s, precio = %s, imagen_url = %s, proveedor = %s WHERE codigo = %s"
-        valores = (codigo, descripcion_nueva, cantidad_nueva, precio_nuevo, imagen_nueva, proveedor_nuevo)
+        sql = "UPDATE productos SET descripcion = %s, cantidad = %s, precio = %s, imagen_url = %s, proveedor = %s WHERE codigo = %s" 
+        valores = (descripcion_nueva, cantidad_nueva, precio_nuevo, imagen_nueva, proveedor_nuevo, codigo)
     
         self.cursor.execute(sql, valores) #busca el producto, aplica las modif 
         self.conn.commit()              #confirma los cambios
@@ -215,7 +218,7 @@ def modificar_producto(codigo): #llama a la funcion cuando se realiza una consul
 
 
  #ejecutar la aplicacion (solo se ejecuta el servidor web flask cuando al hacer una consulta se ejecuta el script)
-if __name__ == "__main__":
+#if __name__ == "__main__":
     app.run(debug=True)
 
 #finalizamos la implementacion de la API

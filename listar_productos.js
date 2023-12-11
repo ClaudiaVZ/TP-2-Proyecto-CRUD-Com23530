@@ -21,7 +21,7 @@ fetch(URL + 'productos') //realiza una solicitud GET al servidor
                 '<td align="right">' + producto.cantidad + '</td>' +
                 '<td align="right">' + producto.precio + '</td>' +
                 // Mostrar miniatura de la imagen
-                '<td><img src=https://www.pythonanywhere.com/user/ClaudiaVZ/files/home/ClaudiaVZ/mysite/static/imagenes_productos' + producto.imagen_url + 'alt = "Imagen del producto" style = "width: 100px;" ></td > ' + 
+                '<td><img src="https://www.pythonanywhere.com/user/ClaudiaVZ/files/home/ClaudiaVZ/mysite/static/imagenes_productos/' + producto.imagen_url + '" alt = "Imagen del producto" style = "width: 100px;" ></td > ' +
                 '<td align="right">' + producto.proveedor + '</td>';
 
             tablaProductos.appendChild(fila);
