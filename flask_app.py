@@ -219,7 +219,7 @@ def modificar_producto(codigo): #llama a la funcion cuando se realiza una consul
 
  #ejecutar la aplicacion (solo se ejecuta el servidor web flask cuando al hacer una consulta se ejecuta el script)
 #if __name__ == "__main__":
-    app.run(debug=True)
+    #app.run(debug=True)
 
 #finalizamos la implementacion de la API
 
