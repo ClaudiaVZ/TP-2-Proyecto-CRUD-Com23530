@@ -37,7 +37,11 @@
                 <input type="number" step="0.01" id="precioModificar" v-model="precio" required><br>
 
                 <!-- Imagen actual del producto -->
-                <img v-if="imagen_url && !imagenSeleccionada" :src="'https://www.pythonanywhere.com/user/ClaudiaVZ/files/home/ClaudiaVZ/mysite/static/imagenes_productos/' + imagen_url"
+
+                <!--<img v-if="imagen_url && !imagenSeleccionada" :src="'https://www.pythonanywhere.com/user/ClaudiaVZ/files/home/ClaudiaVZ/mysite/static/imagenes_productos/' + imagen_url"
+                    alt="Imagen del producto" style="max-width: 200px;">-->
+
+                <img v-if="imagen_url && !imagenSeleccionada" :src="'static/imagenes_productos/' + imagen_url"
                     alt="Imagen del producto" style="max-width: 200px;">
 
                 <!-- Vista previa de la nueva imagen seleccionada -->

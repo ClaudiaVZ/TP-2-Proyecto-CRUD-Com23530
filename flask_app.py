@@ -17,7 +17,7 @@ CORS(app)             #cors para todas las rutas
 #clase catalogo 
 class Catalogo: 
     
-     #Metodo CONSTRUCTOR def __init__ 
+    #Metodo CONSTRUCTOR def __init__ 
     def __init__(self, host, user, password, database): #4 parametros
 
         self.conn = mysql.connector.connect(
@@ -38,7 +38,7 @@ class Catalogo:
             else:
                 raise err
             
-     #una vez establecida la BDD, crea la tabla si no existe.
+        #una vez establecida la BDD, crea la tabla si no existe.
         self.cursor.execute(''' CREATE TABLE IF NOT EXISTS productos (
             codigo INT PRIMARY KEY,
             descripcion VARCHAR(255) NOT NULL,
@@ -51,21 +51,21 @@ class Catalogo:
         self.cursor.close() #cerramos el cursor inicial
         self.cursor = self.conn.cursor(dictionary = True) #abrimos cursor nuevo con parametro dicc true para que cada consulta sea devuelta como un diccionario
 
-
-     #Metodo listar prodcuctos (muestra una lista de todos los productos) operacion de lectura.
+"""
+    #Metodo listar prodcuctos (muestra una lista de todos los productos) operacion de lectura.
     def listar_productos(self):
         self.cursor.execute("SELECT * FROM productos") #consulta sobre todos los registros de la tabla
         productos = self.cursor.fetchall() # recupera y devuelve todos los productos de la consulta en una lista de dicc
         return productos
     
 
-     #Metodo consultar productos por su Cod
+    #Metodo consultar productos por su Cod
     def consultar_producto(self, codigo):
-        self.cursor.execute(f"SELECT * FROM pacientes WHERE codigo = {codigo}")
+        self.cursor.execute(f"SELECT * FROM productos WHERE codigo = {codigo}")
         return self.cursor.fetchone() # busca el producto y lo muestra, si no, retorna false
 
    
-     #Metodo mostrar productos por su Cod
+    #Metodo mostrar productos por su Cod
     def mostrar_producto(self, codigo):
 
         producto = self.consultar_producto(codigo) #si encuentra el producto, muestra los detalles
@@ -82,16 +82,16 @@ class Catalogo:
             print("Producto NO encontado.") # si no encuentra el producto, imprime un mje.
 
 
-     #Metodo agregar productos a la BDD MySQL (evita duplicados)
+    #Metodo agregar productos a la BDD MySQL (evita duplicados)
     def agregar_producto(self, codigo, descripcion, cantidad, precio, imagen, proveedor):
     
-         #consulto si hay un producto con el mismo codigo
+        #consulto si hay un producto con el mismo codigo
         self.cursor.execute(f"SELECT * FROM productos WHERE codigo = {codigo}")
         producto_existe = self.cursor.fetchone() #(ir a buscar)
         if producto_existe:
             return False   # si el producto ya existe, no se vuelve a agregar
     
-         #si no existe, entonces lo agrega a la tabla con los valores proporcionados
+        #si no existe, entonces lo agrega a la tabla con los valores proporcionados
         sql = "INSERT INTO productos (codigo, descripcion, cantidad, precio, imagen_url, proveedor) VALUES (%s, %s, %s, %s, %s, %s)"
         valores = (codigo, descripcion, cantidad, precio, imagen, proveedor)
         
@@ -100,7 +100,7 @@ class Catalogo:
         return True     #el producto se agrego con exito!        
 
 
-     #Metodo eliminar producto (elimina un producto mediante su Cod)
+    #Metodo eliminar producto (elimina un producto mediante su Cod)
     def eliminar_producto(self, codigo):
         #self.cursor.execute(f"DELETE FROM productos WHERE codigo = {codigo}")
         sql = "DELETE FROM productos WHERE codigo = %s"
@@ -110,39 +110,39 @@ class Catalogo:
         return self.cursor.rowcount > 0 #evalua si la eliminacion fue exitosa (>0 indica q se ha eliminado un producto; <0 indica q el producto no fue encontrado)
 
 
-     #Metodo modificar producto por su Cod (actualizar los datos)
+    #Metodo modificar producto por su Cod (actualizar los datos)
     def modificar_producto(self, codigo, descripcion_nueva, cantidad_nueva, precio_nuevo, imagen_nueva, proveedor_nuevo):
-     #consulta para evitar inyecciones (vulneravilidad de seg)
+        #consulta para evitar inyecciones (vulneravilidad de seg)
         sql = "UPDATE productos SET descripcion = %s, cantidad = %s, precio = %s, imagen_url = %s, proveedor = %s WHERE codigo = %s" 
         valores = (descripcion_nueva, cantidad_nueva, precio_nuevo, imagen_nueva, proveedor_nuevo, codigo)
     
         self.cursor.execute(sql, valores) #busca el producto, aplica las modif 
         self.conn.commit()              #confirma los cambios
         return self.cursor.rowcount > 0 #num de filas afectadas
-
+"""
 
 #CUERPO DEL PROGRAMA (crear catalogo)
 
 #instancia de la clase catalogo (4 Argumentos)
 #Catalogo = Catalogo(host='localhost', user='root', password='', database='miapp')
 
-Catalogo = Catalogo(host= 'ClaudiaVZ.mysql.pythonanywhere-services.com', user= 'ClaudiaVZ', password= 'proyectocrud23', database= 'ClaudiaVZ$miapp')
+Catalogo = Catalogo(host= 'localhost', user= 'root', password= '', database= 'miapp')
 
 
 #carpeta donde se guardan las imagenes 
-#ruta_destino = './static/imagenes_productos/'
-ruta_destino = '/home/ClaudiaVZ/mysite/static/imagenes_productos/' #cambio la ruta de las imagenes por la q me dá anywhere en files con slash al principio y fin sino, no carga las imagenes(aparecen rotas)
+ruta_destino = './static/imagenes_productos/'
+#ruta_destino = '/home/claudiaz/mysite/static/imagenes_productos/' #cambio la ruta de las imagenes por la q me dá anywhere en files con slash al principio y fin sino, no carga las imagenes(aparecen rotas)
 
- #RUTAS
+#RUTAS
 
- #Ruta listar productos
+"""#Ruta listar productos
 @app.route("/productos", methods = ["GET"]) #asocia la funcion con la url, responde a solicitudes HTTP (web)
 def listar_productos():
     productos = Catalogo.listar_productos() #devuelve una lista de dicc donde cada dicc representa 1 producto
     return jsonify(productos) #devuelve los datos en formato JSON(APIs)
 
 
- #Ruta mostrar producto
+#Ruta mostrar producto
 @app.route("/productos/<int:codigo>", methods = ["GET"]) #representa el num de codigo del prooducto
 def mostrar_producto(codigo): #solicitud para dif codigos
     Catalogo.mostrar_producto(codigo)
@@ -153,7 +153,7 @@ def mostrar_producto(codigo): #solicitud para dif codigos
         return "Producto NO encontrado", 404 #si no lo encuentra tira un mje de error.
 
 
- #Ruta agregar productos (ruta Flask -punto de acceso- permite registrar un nuevo producto a la base de datos)
+#Ruta agregar productos (ruta Flask -punto de acceso- permite registrar un nuevo producto a la base de datos)
 @app.route("/productos", methods = ["POST"]) #solicitudes HTTP POST, URL es /productos.
 def agragar_producto(): #se asocia a la url cuando se consulta por un producto y accede a los campos del form (recoge los datos)
     codigo = request.form['codigo']
@@ -174,18 +174,18 @@ def agragar_producto(): #se asocia a la url cuando se consulta por un producto y
         return jsonify({"mensaje": "El Producto ya Existe"}), 400  #resp JSON HTTP 400 (no creado)
 
 
- #Ruta eliminar producto (DELETE)
+#Ruta eliminar producto (DELETE)
 @app.route("/productos/<int:codigo>", methods = ["DELETE"])
 def eliminar_producto(codigo):
-     # Primero, obtiene la información del producto para encontrar la imagen
+    #Primero, obtiene la información del producto para encontrar la imagen
     producto = Catalogo.consultar_producto(codigo)
     if producto:
-     # Elimina la imagen asociada, si existe
+    #Elimina la imagen asociada, si existe
         ruta_imagen = os.path.join(ruta_destino, producto['imagen_url'])
         if os.path.exists(ruta_imagen):
             os.remove(ruta_imagen)
 
-     # Luego, elimina el producto del catálogo
+        #Luego, elimina el producto del catálogo
         if Catalogo.eliminar_producto(codigo):
             return jsonify({"mensaje": "Producto Eliminado!"}), 200 #si lo encuentra muestra mje de exito
         else:
@@ -195,7 +195,7 @@ def eliminar_producto(codigo):
         #si el prod NO exite muestra mje de NO ENCONTRADO
 
 
- #Ruta modificar Producto
+#Ruta modificar Producto
 @app.route("/productos/<int:codigo>", methods = ["PUT"]) #Cod del producto a modif
 def modificar_producto(codigo): #llama a la funcion cuando se realiza una consulta seguida de un num (Cod) recoge los datos
     descripcion_nueva = request.form.get("descripcion")
@@ -217,10 +217,10 @@ def modificar_producto(codigo): #llama a la funcion cuando se realiza una consul
         return jsonify({"mensaje": "Producto NO encontrado"}), 404
 
 
- #ejecutar la aplicacion (solo se ejecuta el servidor web flask cuando al hacer una consulta se ejecuta el script)
-#if __name__ == "__main__":
-    #app.run(debug=True)
+#ejecutar la aplicacion (solo se ejecuta el servidor web flask cuando al hacer una consulta se ejecuta el script)
+if __name__ == "__main__":
+    app.run(debug=True)
 
 #finalizamos la implementacion de la API
-
+"""
 
