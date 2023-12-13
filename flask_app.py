@@ -51,7 +51,7 @@ class Catalogo:
         self.cursor.close() #cerramos el cursor inicial
         self.cursor = self.conn.cursor(dictionary = True) #abrimos cursor nuevo con parametro dicc true para que cada consulta sea devuelta como un diccionario
 
-"""
+
     #Metodo listar prodcuctos (muestra una lista de todos los productos) operacion de lectura.
     def listar_productos(self):
         self.cursor.execute("SELECT * FROM productos") #consulta sobre todos los registros de la tabla
@@ -119,7 +119,7 @@ class Catalogo:
         self.cursor.execute(sql, valores) #busca el producto, aplica las modif 
         self.conn.commit()              #confirma los cambios
         return self.cursor.rowcount > 0 #num de filas afectadas
-"""
+
 
 #CUERPO DEL PROGRAMA (crear catalogo)
 
@@ -135,7 +135,7 @@ ruta_destino = './static/imagenes_productos/'
 
 #RUTAS
 
-"""#Ruta listar productos
+#Ruta listar productos
 @app.route("/productos", methods = ["GET"]) #asocia la funcion con la url, responde a solicitudes HTTP (web)
 def listar_productos():
     productos = Catalogo.listar_productos() #devuelve una lista de dicc donde cada dicc representa 1 producto
@@ -222,5 +222,5 @@ if __name__ == "__main__":
     app.run(debug=True)
 
 #finalizamos la implementacion de la API
-"""
+
 
