@@ -23,7 +23,7 @@ const app = Vue.createApp({ //define un objeto crea una Vue dentro de otra
                         return response.json() // los convierte de JSON a OB JS
                     } else {
                         //Si la respuesta es un error, lanzamos una excepción para ser "catcheada" más adelante en el catch.
-                        throw new Error('Error al obtener los datos del producto.')
+                        throw new Error('Error al obtener datos del producto.')
                     }
                 })
 
@@ -53,11 +53,11 @@ const app = Vue.createApp({ //define un objeto crea una Vue dentro de otra
             formData.append('codigo', this.codigo);
             formData.append('descripcion', this.descripcion);
             formData.append('cantidad', this.cantidad);
-            formData.append('proveedor', this.proveedor);
             formData.append('precio', this.precio);
+            formData.append('proveedor', this.proveedor);
+            
             if (this.imagenSeleccionada) {
-                formData.append('imagen', this.imagenSeleccionada,
-                this.imagenSeleccionada.name);
+                formData.append('imagen', this.imagenSeleccionada, this.imagenSeleccionada.name);
             }
             //Utilizamos fetch para realizar una solicitud PUT a la API y
             //guardar los cambios.
@@ -69,7 +69,7 @@ const app = Vue.createApp({ //define un objeto crea una Vue dentro de otra
             .then(response => {
                     //Si la respuesta es exitosa, convierte la resp a un OB JS
                 if (response.ok) {
-                    return response.json()
+                        return response.json()
                 } else {
                         //Si la respuesta es un error, lanzamos una excepción.
                     throw new Error('Error al guardar los cambios del producto.')
@@ -91,6 +91,7 @@ const app = Vue.createApp({ //define un objeto crea una Vue dentro de otra
             this.descripcion = '';
             this.cantidad = '';
             this.precio = '';
+            this.proveedor = '';
             this.imagen_url = '';
             this.imagenSeleccionada = null;
             this.imagenUrlTemp = null;

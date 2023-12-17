@@ -11,25 +11,36 @@ l<!--Listado de Productos-->
 </head>
 
 <body>
+
     <h1>Lista de Productos</h1> <!--titulo-->
-    <h3>Catálogo</h3>             <!--subtitulo-->
+    <h3>Catálogo</h3> <!--subtitulo-->
+    
     <table> <!--tabla para mostrar productos-->
+        
         <thead> <!--encabezado de la tabla-->
+            
             <tr> <!--columnas-->
                 <th>Código </th>
                 <th>Descripción </th>
                 <th>Cantidad </th>
-                <th align="right">Precio </th>
+                <th>Precio </th>
+                <th>Proveedor </th>
                 <th>Imagen</th>
-                <th align="right">Proveedor </th>
+                
             </tr>
+
         </thead>
+
         <tbody id="tablaProductos"> </tbody> <!--cuerpo de la tabla donde se insertan los datos de los productos a traves de javascript-->
+    
     </table>
+
     <div class="contenedor-centrado">
         <a href="index.html">Menu principal</a>
     </div>
+
     <script src="listar_productos.js"></script>
+
 </body>
 
 </html>

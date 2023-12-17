@@ -20,8 +20,9 @@
                 <th>Código</th>
                 <th>Descripción</th>
                 <th>Cantidad</th>
-                <th align="right">Precio</th>
-                <th>Acciones</th>
+                <th>Precio</th>
+                <th>Proveedor</th>
+                <th>Imagen</th>  
             </tr>
         </thead>
 
@@ -30,7 +31,9 @@
                 <td>{{ producto.codigo }}</td>
                 <td>{{ producto.descripcion }}</td>
                 <td>{{ producto.cantidad }}</td>
-                <td align="right">{{ producto.precio }}</td>
+                <td>{{ producto.precio }}</td>
+                <td>{{ producto.proveedor }}</td>
+                <td>{{ producto.imagen }}</td>
                 <td><button @click="eliminarProducto(producto.codigo)">Eliminar</button></td>
             </tr>
         </tbody>
